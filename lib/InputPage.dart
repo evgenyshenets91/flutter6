@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'ReusableCard.dart';
 import 'IconContent.dart';
-
-const BOTTOM_CONTAINER_HEIGHT = 60.0;
-const ACTIVE_CARD_COLOR = Color(0xFF1D1E33);
-const INACTIVE_CARD_COLOR = Color(0xFF111328);
-const BOTTOM_CONTAINER_CARD_COLOR = Colors.red;
+import 'constants.dart';
 
 enum Gender { male, female }
 
@@ -20,6 +16,8 @@ class _InputPageState extends State<InputPage> {
 
   Color selectedColor;
 
+  int height = 180;
+
   Color selectColor({Gender gender}) {
     return selectedGender == gender ? ACTIVE_CARD_COLOR : INACTIVE_CARD_COLOR;
   }
@@ -31,6 +29,7 @@ class _InputPageState extends State<InputPage> {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
               child: Row(
@@ -62,12 +61,37 @@ class _InputPageState extends State<InputPage> {
             ],
           )),
           Expanded(
-              child: Row(
-            children: <Widget>[
-              Expanded(
-                child: ReusableCard(colour: ACTIVE_CARD_COLOR),
-              ),
-            ],
+              child: ReusableCard(
+            colour: ACTIVE_CARD_COLOR,
+            cardChildren: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  'Height',
+                  style: LABEL_TEXT_STYLE,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.baseline,
+                  children: <Widget>[
+                    Text(height.toString(), style: NUMBER_TEXT_STYLE),
+                    Text('cm', style: LABEL_TEXT_STYLE),
+                  ],
+                ),
+                Slider(
+                  value: height.toDouble(),
+                  min: 120.0,
+                  max: 220.0,
+                  activeColor: Color(0xFFEB1555),
+                  inactiveColor: Color(0xFF8D8E98),
+                  onChanged: (double newValue) {
+                    setState(() {
+                      height = newValue.round();
+                    });
+                  },
+                )
+              ],
+            ),
           )),
           Expanded(
               child: Row(
