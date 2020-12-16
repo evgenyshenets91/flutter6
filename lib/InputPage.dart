@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'ReusableCard.dart';
 import 'IconContent.dart';
@@ -78,17 +79,24 @@ class _InputPageState extends State<InputPage> {
                     Text('cm', style: LABEL_TEXT_STYLE),
                   ],
                 ),
-                Slider(
-                  value: height.toDouble(),
-                  min: 120.0,
-                  max: 220.0,
-                  activeColor: Color(0xFFEB1555),
-                  inactiveColor: Color(0xFF8D8E98),
-                  onChanged: (double newValue) {
-                    setState(() {
-                      height = newValue.round();
-                    });
-                  },
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                      activeTrackColor: Colors.white,
+                      inactiveTrackColor: Color(0xFF8D8E98),
+                      overlayColor: Color(0x29EB1555),
+                      thumbColor: BOTTOM_CONTAINER_CARD_COLOR,
+                      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15),
+                      overlayShape: RoundSliderOverlayShape(overlayRadius: 30)),
+                  child: Slider(
+                    value: height.toDouble(),
+                    min: 120.0,
+                    max: 220.0,
+                    onChanged: (double newValue) {
+                      setState(() {
+                        height = newValue.round();
+                      });
+                    },
+                  ),
                 )
               ],
             ),
