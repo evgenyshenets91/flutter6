@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter6/resultsPage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'ReusableCard.dart';
 import 'IconContent.dart';
@@ -178,11 +179,18 @@ class _InputPageState extends State<InputPage> {
               ),
             ],
           )),
-          Container(
-            color: BOTTOM_CONTAINER_CARD_COLOR,
-            margin: EdgeInsets.only(top: 10),
-            width: double.infinity,
-            height: BOTTOM_CONTAINER_HEIGHT,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ResultsPage()));
+            },
+            child: Container(
+              child: Text('CALCULATE'),
+              color: BOTTOM_CONTAINER_CARD_COLOR,
+              margin: EdgeInsets.only(top: 10),
+              width: double.infinity,
+              height: BOTTOM_CONTAINER_HEIGHT,
+            ),
           ),
         ],
       ),
