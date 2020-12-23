@@ -185,7 +185,10 @@ class _InputPageState extends State<InputPage> {
                   MaterialPageRoute(builder: (context) => ResultsPage()));
             },
             child: Container(
-              child: Text('CALCULATE'),
+              child: Center(
+                child: Text('CALCULATE',
+                    style: LABEL_TEXT_STYLE.copyWith(color: Colors.white)),
+              ),
               color: BOTTOM_CONTAINER_CARD_COLOR,
               margin: EdgeInsets.only(top: 10),
               width: double.infinity,
