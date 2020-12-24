@@ -26,7 +26,7 @@ class CalculatorBrain {
     if (_bmi >= 25) {
       return 'Try to exercise more';
     } else if (_bmi > 18.5) {
-      return 'Good job';
+      return 'Good job!';
     } else {
       return 'You can eat a bit more';
     }
